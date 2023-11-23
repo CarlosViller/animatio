@@ -1,27 +1,32 @@
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		starlight({
-			title: 'My Docs',
-			social: {
-				github: 'https://github.com/withastro/starlight',
-			},
-			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
-				},
-			],
-		}),
-	],
+  integrations: [
+    starlight({
+      title: "Animatio",
+      social: {
+        github: "https://github.com/CarlosViller/animatio",
+      },
+      customCss: [
+        './src/styles/custom.css',
+      ],
+      sidebar: [
+        {
+          label: "Introduction",
+          items: [
+            {
+              label: "What is the purpose of this guide?",
+              link: "/welcome/introduction",
+            },
+          ],
+        },
+        {
+          label: "Core basics",
+          autogenerate: { directory: "basics" },
+        },
+      ],
+    }),
+  ],
 });
