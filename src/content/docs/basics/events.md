@@ -3,8 +3,6 @@ title: Events
 description: A brief resume of events and event listener in JavaScript
 ---
 
-## Events
-
 As defined at [MDN](https://developer.mozilla.org/en-US/docs/Web/Events), events are fired when something important happens, it will be caused mostly by user interaction like clicking a button, moving the mouse, scrolling, typing, hover an element and so on.
 
 Here's a list of most common events on Javascript:
@@ -18,7 +16,6 @@ Here's a list of most common events on Javascript:
 7. **Load**: Triggered when a resource and its dependent resources have finished loading.
 8. **Unload**: Occurs when a page is being unloaded.
 9. **Resize**: Fired when the browser window is resized.
-10. **DOMContentLoaded**: Fired when the initial HTML document has been completely loaded and parsed.
 
 Events are the key for JS-based animations and effects, clicking a button could trigger an animation by using its event. But event itself doesn't execute any code, they need a counterpart that listen to them and response with code, those are called **Event Listeners**.
 

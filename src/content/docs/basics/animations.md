@@ -3,31 +3,84 @@ title: Animations
 description: A brief resume of animations on CSS
 ---
 
-## Events
+CSS animations are a bliss, no one can deny it!
+With some CSS rules you can make your site look more professional, let's talk about some of them, specially **transition**, **transform**, **animation** and **@keyframes**
 
-As defined at [MDN](https://developer.mozilla.org/en-US/docs/Web/Events), events are fired when something important happens, it will be caused mostly by user interaction like clicking a button, moving the mouse, scrolling, typing, hover an element and so on.
+### Transitions
 
-Here's a list of most common events on Javascript:
+So, transitions in CSS are like the magic touch for your web elements. Imagine you have a button, and instead of it instantly changing when you hover over it, you want it to smoothly morph into a new color or size. That's where transitions come into play!
 
-1. **Click**: Triggered when an element is clicked.
-2. **Mouseover**: Occurs when the mouse pointer is moved over an element.
-3. **Mouseout**: Occurs when the mouse pointer leaves an element.
-4. **Change**: Fired when the value of an input element changes.
-5. **Submit**: Triggered when a form is submitted.
-6. **Keydown**: Occurs when a key on the keyboard is pressed.
-7. **Load**: Triggered when a resource and its dependent resources have finished loading.
-8. **Unload**: Occurs when a page is being unloaded.
-9. **Resize**: Fired when the browser window is resized.
-10. **DOMContentLoaded**: Fired when the initial HTML document has been completely loaded and parsed.
+Here's the lowdown:
+1. ##### The All-in-One Trick:
 
-Events are the key for JS-based animations and effects, clicking a button could trigger an animation by using its event. But event itself doesn't execute any code, they need a counterpart that listen to them and response with code, those are called **Event Listeners**.
+If you want everything to transition smoothly – be it color, size, or position – you can use the **transition: all 0.3s ease-in-out;** style. It's like telling your element, "Hey, change, but do it gracefully in 0.3 seconds, okay?"
 
-## Event Listeners
+2. ##### Specific Changes:
 
-Event listeners are pieces of code that waits for a certain event to happen, and when that occurs, they execute a block of code, easy as that.
+Or you can spread the properties. For instance:
 
-```js
-window.addEventListener("click", () => console.log("Hello World!"));
+```css
+.transition-element-specific {
+  transition-property: opacity, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
 ```
 
-Here we are adding an event listener to the global [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object that waits for click events, and when it detects one, they print "Hello World!".
+3. ##### The Delay Effect:
+
+If you don't want the animation to start immediately, you can add a delay too!
+
+```css
+
+.delayed-transition {
+  transition: opacity 0.3s ease-in-out 0.5s;
+}
+```
+
+### Transform
+
+Transform rules let you morph, twist, and spin elements without breaking a sweat. You can scale things up, shrink them down, move them or even rotate them. Let's see some examples.
+
+
+```css
+.element {
+  /* grow an element 1.5 times it size, you cans shrink it using numbers less than 1 */
+  transform: scale(1.5);
+}
+
+.element2 {
+  transform: rotate(45deg);
+}
+
+.element3 {
+  /* move the element 50px to the right and 20px up */
+  transform: translate(50px, -20px);
+}
+```
+
+### Animation and Keyframes
+
+`animation` and `@keyframes` rules gives you a granular control over the steps of your animation
+Consider the following example:
+
+```css
+/* Application of animation to a designated element */
+.myElement {
+  animation: shake 1s ease-in-out;
+}
+
+/* Definition of animation specifics through keyframes */
+@keyframes shake {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+```
+We have defined a shake animation that displaces an element to the left, then to the right, and ultimately returns it to the center. It is noteworthy that, through the utilization of keyframes, we have the capability to specify an intermediate point within the animation and define more than one effect.

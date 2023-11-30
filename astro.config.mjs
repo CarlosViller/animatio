@@ -1,6 +1,8 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
+import tailwind from "@astrojs/tailwind";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -10,7 +12,7 @@ export default defineConfig({
         github: "https://github.com/CarlosViller/animatio",
       },
       customCss: [
-        './src/styles/custom.css',
+        './src/tailwind.css',
       ],
       sidebar: [
         {
@@ -24,9 +26,37 @@ export default defineConfig({
         },
         {
           label: "Core basics",
-          autogenerate: { directory: "basics" },
+          autogenerate: {
+            directory: "basics",
+          },
+        },
+        {
+          label: "Glow",
+          items: [
+            {
+              label: "Glowing mouse",
+              link: "/glow/glowing-mouse",
+            },
+          ],
+        },
+        {
+          label: "Gradients",
+          items: [
+            {
+              label: "Button background gradient",
+              link: "/gradients/button-gradient",
+            },
+            {
+              label: "Box border",
+              link: "/gradients/box-border",
+            },
+          ],
         },
       ],
+    }),
+    tailwind({
+      // Disable the default base styles:
+      applyBaseStyles: false,
     }),
   ],
 });

@@ -1,0 +1,44 @@
+---
+title: Glowing mouse
+description: Glowing mouse effect
+---
+
+import MouseGlow from "../../../examples/MouseGlow.astro";
+
+<MouseGlow />
+Do you see it? Your mouse is <span>glowing!</span>
+
+Let's learn how to create this effect with a few lines of code.
+
+The trick behind this is to move a box along with your mouse and add some CSS to make it glow. Using JavaScript, we can get the position in pixels of the mouse every time it moves. The only thing left is to move the box to the mouse position.
+Steps
+
+1. Create an empty div element in your document:
+
+```html
+<div id="glow-box"></div>
+```
+2. Using the mousemove event, get the mouse position on the page and translate the box to that position. This process will repeat every time the mouse moves:
+
+```js
+window.addEventListener("mousemove", (event) => {
+  if (!glowBox) return;
+
+  const mousePos = {
+    x: event.pageX,
+    y: event.pageY,
+  };
+
+  glowBox.style.transform = `translate(${mousePos.x}px, ${mousePos.y}px)`;
+});
+```
+
+3. Just add some CSS to your box to make it glow! Remember to add position: absolute; to make the effect work:
+
+```css
+#glow-box {
+  box-shadow: 0px 0px 200px 200px rgba(168, 85, 247, 0.2);
+  border-radius: 50%;
+  position: absolute;
+}
+```

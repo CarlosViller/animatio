@@ -1,0 +1,48 @@
+---
+title: Box border gradient
+description: Box border gradient
+---
+
+import BoxBorderGradient from "../../../examples/BoxBorderGradient.astro";
+
+<BoxBorderGradient />
+
+
+This effect might not be as intuitive as you may think. We can't apply a gradient to a border, but we can have a box with a gradient background and another box with a bit of margin inside that works as our content box. Let's see how to achieve it.
+
+### Steps
+
+1. Create 2 div elements, one inside the other:
+
+```html
+<div class="gradient-box">
+  <div class="content">Hello world</div>
+</div>
+```
+
+2. Create a gradient; you can use <a href="https://cssgradient.io/" target="_blank">cssgradient.io</a> for that.
+
+3. Apply the gradient as a background to the container element and add a small padding. This will create a separation between our gradient box and the content box. That way, it would look like a border!
+
+```css
+.gradient-box {
+  width: 100%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    215deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  padding: 3px;
+}
+```
+
+4. Add a plain color as the background for your content box and style it as you need:
+
+```css
+.content {
+  border-radius: 8px;
+  background-color: black;
+  padding: 10px;
+}
+```
