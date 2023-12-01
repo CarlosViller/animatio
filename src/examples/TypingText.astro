@@ -1,0 +1,64 @@
+<script>
+const textElement = document.getElementById('typing-text');
+const wordList = ['Cool', 'effect', "right?"]
+let currentWordIndex = 0
+let textToType = wordList[currentWordIndex]; // Replace with your desired text
+
+const typingSpeed = 100; // Adjust the typing speed (milliseconds per character)
+const eraseSpeed = 50; // Adjust the erasing speed (milliseconds per character)
+const pauseBetween = 1000; // Adjust the pause between typing and erasing (milliseconds)
+
+let charIndex = 0;
+
+function typeText() {
+
+  if(!textElement) return
+  
+  textElement.textContent += textToType.charAt(charIndex);
+  charIndex++;
+
+  if (charIndex < textToType.length) {
+    setTimeout(typeText, typingSpeed);
+  } else {  
+    setTimeout(eraseText, pauseBetween);
+  }
+}
+
+function eraseText() {
+
+  if(!textElement) return
+
+  const currentText = textElement.textContent;
+
+  if (currentText && currentText.length > 0) {
+      textElement.textContent = currentText.slice(0, -1);
+      setTimeout(eraseText, eraseSpeed);
+  } else {
+      charIndex = 0;
+
+      if(currentWordIndex + 1 < wordList.length) {
+        currentWordIndex += 1
+      }else {
+        currentWordIndex = 0
+      }
+  
+      textToType = wordList[currentWordIndex]
+      setTimeout(typeText, pauseBetween);
+  }
+}
+
+
+
+window.addEventListener("load", typeText)
+</script>
+
+
+<h1 id="typing-text"></h1>
+
+<style>
+  #typing-text {
+    text-align: center;
+    height: 3.625rem;
+    @apply text-primary
+  }
+</style>

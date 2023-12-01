@@ -1,0 +1,114 @@
+---
+title: Typing text effect
+decription: Typing text effect
+---
+
+import TypingText from "../../../examples/TypingText.astro";
+
+<TypingText />
+
+This code creates a cool text-typing effect where words from an array are displayed one at a time, as if someone is typing them. After typing a word, it erases it, then moves on to the next word in the array, and the cycle repeats. It's like a dynamic and playful way to showcase different words on a webpage, adding a bit of flair to the text display. The speed of typing, erasing, and pauses between actions gives it a rhythmic and engaging feel.
+
+
+### Steps
+
+1. Initialization:
+   Start by initializing essential variables such as textElement, wordList, and currentWordIndex.
+
+  ```html
+  <h1 id="typing-text"></h1>
+  ```
+
+```css
+#typing-text {
+  text-align: center;
+  /* Remember to add a height to avoid size shifting between writing and erasing words */
+  height: 3.625rem; 
+}
+```
+
+```js
+const textElement = document.getElementById("typing-text");
+const wordList = ["Cool", "effect", "right?"];
+let currentWordIndex = 0;
+let textToType = arr[currentWordIndex];
+```
+
+2. Typing Parameters:
+   Parameters such as typingSpeed, eraseSpeed, and pauseBetween are set to control the speed of typing, erasing, and the pause between the two actions.
+
+```js
+const typingSpeed = 100; // Adjust the typing speed (milliseconds per character)
+const eraseSpeed = 50; // Adjust the erasing speed (milliseconds per character)
+const pauseBetween = 1000; // Adjust the pause between typing and erasing (milliseconds)
+```
+
+3. Character Index:
+   charIndex is initialized to keep track of the current character being typed or erased within a word.
+
+```js
+let charIndex = 0;
+```
+
+4. typeText Function:
+   This function simulates the typing effect character by character.
+   It checks if textElement is available, then appends the next character of the current word to the displayed text.
+   charIndex is incremented to move to the next character.
+   If the word is not fully typed, a timeout is set to call typeText after the specified typingSpeed.
+   If the word is fully typed, a timeout is set to call the eraseText function after the specified pause (pauseBetween).
+
+```js
+function typeText() {
+  if (!textElement) return;
+
+  textElement.textContent += textToType.charAt(charIndex);
+  charIndex++;
+
+  if (charIndex < textToType.length) {
+    setTimeout(typeText, typingSpeed);
+  } else {
+    setTimeout(eraseText, pauseBetween);
+  }
+}
+```
+
+5. eraseText Function:
+   This function simulates the erasing effect character by character.
+   It checks if textElement is available, then retrieves the current text content.
+   If there is text, it erases the last character and sets a timeout to call itself after the specified eraseSpeed.
+   If the text is fully erased, it resets charIndex to 0 and updates textToType to the next word in the array.
+   A timeout is set to call typeText after the specified pause (pauseBetween).
+
+```js
+function eraseText() {
+  if (!textElement) return;
+
+  const currentText = textElement.textContent;
+
+  if (currentText && currentText.length > 0) {
+    textElement.textContent = currentText.slice(0, -1);
+    setTimeout(eraseText, eraseSpeed);
+  } else {
+    charIndex = 0;
+
+    if (currentWordIndex + 1 < arr.length) {
+      currentWordIndex += 1;
+    } else {
+      currentWordIndex = 0;
+    }
+
+    textToType = arr[currentWordIndex];
+    setTimeout(typeText, pauseBetween);
+  }
+}
+```
+
+7. Event Listener:
+   The window.addEventListener("load", typeText) initiates the typing effect when the window finishes loading.
+
+```js
+window.addEventListener("load", typeText);
+```
+
+8. Cycle Through Words:
+   That's it! The script will go on an infinite loop, watch your words come a go.

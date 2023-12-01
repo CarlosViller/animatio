@@ -52,6 +52,15 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: "Text",
+          items: [
+            {
+              label: "Auto type text",
+              link: "/text/typing-text",
+            },
+          ],
+        },
       ],
     }),
     tailwind({
